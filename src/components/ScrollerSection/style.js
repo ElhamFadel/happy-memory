@@ -5,3 +5,4 @@ export const Scroller = styled.section`
     width: 233%;
     overflow: hidden;
 `;
+export const ScrollerContent = styled.div``;

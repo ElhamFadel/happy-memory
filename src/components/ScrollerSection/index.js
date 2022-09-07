@@ -1,16 +1,30 @@
 import data from "./imagesData";
 import ScrollerClo from "../ScrollerCol";
-import {useRef} from "react";
+import {useRef,useEffect} from "react";
 import * as S from "./style";
 
 function Scroller() {
-//     const currentScroll = useRef(null);
-//     console.log(currentScroll.current.offsetWidth,"lkj");
-//     const executeScroll = () => {
-      
-// }
+    const scrollerElement = useRef(null);
+    const scrollerItemsClonedEl = useRef(null);
+    const executeScroll = () => {
+      console.log("Hello world");
+          console.log(scrollerItemsClonedEl.current.offsetWidth,scrollerElement.current.scrollLeft)
+
+      if (scrollerItemsClonedEl.current.offsetWidth - scrollerElement.current.scrollLeft <= 0) {
+    console.log("Hello world")
+  } else {
+    scrollerElement.current.scrollLeft = scrollerElement.current.scrollLeft + 1;
+    console.log("Hiiiiiiii",scrollerElement.current.scrollLeft)
+
+  }
+    }
+useEffect(()=>{
+  executeScroll()
+  requestAnimationFrame(executeScroll)
+})
   return (
-    <S.Scroller  className="scroller scroll__content">
+    <S.Scroller  className="scroller" ref={scrollerElement}>
+      <S.ScrollerContent className="scroll__content" ref={scrollerItemsClonedEl}>
       {
        data.map((currentImage,index,data)=>{
         if(index%2 !== 0) return <ScrollerClo img1 = {data[index-1]} nameImge1={`img${index-1}`} img2 = {currentImage} nameImge2={`img${index}`} />
@@ -26,6 +40,7 @@ function Scroller() {
         if(index%2 !== 0) return <ScrollerClo img1 = {data[index-1]} nameImge1={`img${index-1}`} img2 = {currentImage} nameImge2={`img${index}`} />
        })
       }
+      </S.ScrollerContent>
     </S.Scroller>
   )
 }
