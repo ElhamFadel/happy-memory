@@ -1,6 +1,8 @@
 .App {
  background-color: #f7f7f7; 
 }
-body::-webkit-scrollbar {
-  display: none;
+body {
+  overflow-y: hidden; /* Hide vertical scrollbar */
+  overflow-x: hidden; /* Hide horizontal scrollbar */
 }
+
